@@ -36,7 +36,6 @@ class App extends Component {
       .then(response => {
         
         if (query === 'cats') {
-
           this.setState({
             cats: response.data.photos.photo,
             loading: false
@@ -62,7 +61,7 @@ class App extends Component {
 
         } 
       })   
-       
+
     // handle error
     .catch(error => { 
       console.log('Error fetching and parsing data', error);
