@@ -1,34 +1,34 @@
 import React from 'react';
-import Image from './Image.js';
-import NotFound from './NotFound.js';
+import Photo from './Photo';
+import NotFound from './NotFound';
 
-const ImageContainer = (props) => {
+const ImageContainer = props => {
     const results = props.data;
-    const loading = props.loading;
-    let images;
+    let photos;
   
-    // If there are search results display them, otherwise display a Not Found message
-    if (results.length) {
-      images = results.map(image => 
-        <Image 
-          url={`https://farm${image.farm}.staticflickr.com/${image.server}/${image.id}_${image.secret}.jpg`}
-          alt={image.title} 
-          key={image.id} 
-        />
-      );
+    // display results when using search function, otherwise display result no found message.
+    if(results.length > 0) {
+      photos = results.map(photo => 
+        <Photo 
+        key = {photo.id} 
+        farm = {photo.farm} 
+        server = {photo.server} 
+        secret = {photo.secret} 
+        title={photo.title} 
+        photoId= {photo.id} 
+        />);
     } else {
-      images = <NotFound />
+      photos = <NotFound />
     }
+    
   
     return(
       <div className="photo-container">
-        <h2>Images For: {props.text}</h2>
+      <h2>Results</h2>
         <ul>
-          {
-            (loading) ? <p>Loading...</p> : images
-          }
+          {photos}
         </ul>
-      </div>
+    </div>               
     );
   }
 
