@@ -1,5 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## CSS Style Update Change
+
+This project has been customized to a personal preference. Please see below to check out all the changes.
+
+All the buttons color update including the hoving color.
+Add box-shadow to all the buttons.
+Update font family to 'fantasy' to match the color theme.
+Add font weight to the text.
+Add more padding to main nav buttons.
+
 ## Available Scripts
 
 In the project directory, you can run:
