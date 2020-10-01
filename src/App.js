@@ -27,47 +27,49 @@ class App extends Component {
   } 
    
    componentDidMount() {
+    this.performSearch();
     this.performSearch('cats');
     this.performSearch('dogs');
     this.performSearch('birds');
   }
 
   performSearch = (query = 'cats') =>{
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apikey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
-      .then(response => {
-        
-        if (query === 'cats') {
-          this.setState({
-            cats: response.data.photos.photo,
-            loading: false
-          });
+    try {
+      this.setState({ loading: true })
+
+      axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apikey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+        .then(response => {
+          if (query === 'cats') {
+            this.setState({
+              cats: response.data.photos.photo,
+              loading: false
+            });
+            
+          } else if(query === 'dogs') {
+            this.setState({
+              dogs: response.data.photos.photo,
+              loading: false
+            });
+            
+          } else if(query === 'birds') {
+            this.setState({
+              birds: response.data.photos.photo,
+              loading: false
+            });
+  
+          }else{
+            this.setState({
+              search: response.data.photos.photo,
+              loading: false
+            });
+  
+          }
           
-        } else if(query === 'dogs') {
-          this.setState({
-            dogs: response.data.photos.photo,
-            loading: false
-          });
-          
-        } else if(query === 'birds') {
-          this.setState({
-            birds: response.data.photos.photo,
-            loading: false
-          });
+        }) 
 
-        } else {
-          this.setState({
-            search: response.data.photos.photo,
-            loading: false
-          });
-
-        } 
-      })   
-
-    // handle error
-    .catch(error => { 
+    } catch (error) { 
       console.log('Error fetching and parsing data', error);
-    }); 
- 
+    } 
   }
 
 
@@ -77,19 +79,16 @@ class App extends Component {
         <div className= "main-container" >
           <SearchForm onSearch={this.performSearch} />
           <Navigation />
-          {
-            (this.state.loading)
-            ? <p>Loading...</p>
-            :<Switch>
+          
+            <Switch>
             <Route exact path="/" render = { () => <Redirect to='/cats'/> } />
-            <Route path="/cats" render = { () => <ImageContainer data = {this.state.cats}/>  }  />
-            <Route path="/dogs" render = { () => <ImageContainer data = {this.state.dogs}/>  }  />
-            <Route path="/birds" render = { () => <ImageContainer data = {this.state.birds}/> } /> 
-            <Route path="/search/:query" render = {() => <ImageContainer data = {this.state.search}/> } />
+            <Route path="/cats" render = { () => (this.state.loading) ? <p>Loading...</p> : <ImageContainer data = {this.state.cats}/>  }  />
+            <Route path="/dogs" render = { () => (this.state.loading) ? <p>Loading...</p> : <ImageContainer data = {this.state.dogs}/>  }  />
+            <Route path="/birds" render = { () => (this.state.loading) ? <p>Loading...</p> : <ImageContainer data = {this.state.birds}/> } /> 
+            <Route path="/search/:query" render = {() => (this.state.loading) ? <p>Loading...</p> : <ImageContainer data = {this.state.search}/> } />
             <Route component={ PageError } />
           </Switch>
-          }
-
+          
         </div>
       </BrowserRouter>
     );

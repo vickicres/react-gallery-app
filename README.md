@@ -8,7 +8,8 @@ All the buttons color update including the hoving color.<br />
 Add box-shadow to all the buttons.<br />
 Update font family to 'fantasy' to match the color theme.<br />
 Add font weight to the text.<br />
-Add more padding to main nav buttons.
+Add more padding to main nav buttons.<br />
+Add background image.
 
 ## Available Scripts
 

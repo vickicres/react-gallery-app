@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Photo = ({ farm, server, secret, photoId, title }) => (
+const Photo = ({ farm, server, id, secret, title }) => (
     <li>
-        <img src={`https://farm${farm}.staticflickr.com/${server}/${photoId}_${secret}.jpg`} alt= {`${title}`}/>
+        <img src={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`} alt= {`${title}`}/>
         
   </li>    
 );

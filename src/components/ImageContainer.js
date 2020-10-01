@@ -13,11 +13,14 @@ const ImageContainer = props => {
         key = {photo.id} 
         farm = {photo.farm} 
         server = {photo.server} 
+        id= {photo.id}
         secret = {photo.secret} 
         title={photo.title} 
-        photoId= {photo.id} 
         />);
-    } else {
+    } else if(results.length === 0 && props.loading === true) {
+      photos = <p>Loading...</p>
+
+    }else {
       photos = <NotFound />
     }
     

@@ -4,6 +4,7 @@ body {
     font-family: fantasy;
     font-weight: 600;
     color: #3f4850;
+    background-image: url("paper.jpg");
   }
   
   h2 {
@@ -11,6 +12,11 @@ body {
     margin: 52px 0 40px;
     text-transform: capitalize;
     font-family: fantasy;
+  }
+
+  p {
+    font-size: 2em;
+    text-transform: capitalize;
   }
   
   ul {
@@ -43,7 +49,8 @@ body {
     width: 100%;
     background-color: #edeff0;
     padding: 10px 15px;
-    border: 3px solid #d7dbdf;
+    border: 2px solid #403C3B;
+    box-shadow: 3px 4px #403C3B;
     border-right: none;
     border-radius: 0.35em 0 0 0.35em;
     outline: none;
