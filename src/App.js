@@ -26,6 +26,7 @@ class App extends Component {
     };
   } 
    
+  // Mount components for the search function and the defaults
    componentDidMount() {
     this.performSearch();
     this.performSearch('cats');
@@ -33,6 +34,7 @@ class App extends Component {
     this.performSearch('birds');
   }
 
+ // Get data from API request when user try to search images
   performSearch = (query = 'cats') =>{
     try {
       this.setState({ loading: true })
@@ -66,7 +68,7 @@ class App extends Component {
           }
           
         }) 
-
+     //handle error
     } catch (error) { 
       console.log('Error fetching and parsing data', error);
     } 
@@ -77,15 +79,17 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className= "main-container" >
+        {/* add search form */}
           <SearchForm onSearch={this.performSearch} />
           <Navigation />
-          
+           {/* set routes */}
             <Switch>
             <Route exact path="/" render = { () => <Redirect to='/cats'/> } />
             <Route path="/cats" render = { () => (this.state.loading) ? <p>Loading...</p> : <ImageContainer data = {this.state.cats}/>  }  />
             <Route path="/dogs" render = { () => (this.state.loading) ? <p>Loading...</p> : <ImageContainer data = {this.state.dogs}/>  }  />
             <Route path="/birds" render = { () => (this.state.loading) ? <p>Loading...</p> : <ImageContainer data = {this.state.birds}/> } /> 
             <Route path="/search/:query" render = {() => (this.state.loading) ? <p>Loading...</p> : <ImageContainer data = {this.state.search}/> } />
+            {/* Set error page when routes not exists */}
             <Route component={ PageError } />
           </Switch>
           

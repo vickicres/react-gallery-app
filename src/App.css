@@ -5,6 +5,8 @@ body {
     font-weight: 600;
     color: #3f4850;
     background-image: url("paper.jpg");
+    height: 1500px;
+    background-size: cover;
   }
   
   h2 {
